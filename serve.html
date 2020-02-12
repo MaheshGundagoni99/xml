@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Servlet</title>
+<script>
+function display()
+{
+var xmldoc=new ActiveXObject("Microsoft.XMLDOM");
+xmldoc.load("data.xml");
+var element=xmldoc.documentElement;
+var sid=document.myform.id.value;
+for(i=0;i<element.childNodes.length;i++)
+{
+var y=xmldoc.getElementsByTagName("rollno")[i].childNodes[0].nodeValue;
+if(y==sid)
+{
+nm=xmldoc.getElementsByTagName("name")[i].childNodes[0].nodeValue;
+rno=xmldoc.getElementsByTagName("rollno")[i].childNodes[0].nodeValue;
+per=xmldoc.getElementsByTagName("percentage")[i].childNodes[0].nodeValue;
+document.write("<body bgcolor='white'>");
+document.write("<table border=1 align='center'> <tr> <th colspan='2'>USER DETSILS</th></tr>");
+document.write("<tr><th>Name:::</th><td>"+nm+"</td></tr>");
+document.write("<tr><th>Roll no:::</th><td>"+rno+"</td></tr>");
+document.write("<tr><th>Percentage:::</th><td>"+per+"</td></tr>");
+document.write("</table></body>");
+return true;
+}
+}
+document.writeln("Student ID not found");
+}
+</script>
+</head>
+<body>
+<form name ="myform">
+<table align='center'>
+<tr><td><b>Student ID</b></td>
+<td><input type="text" size="15" name="id">
+</td>
+</tr>
+</table><br>
+<center>
+<input type="button" value="Submit" name="b1" onclick="display()">
+</center>
+</form>
+</body>
+</html>
